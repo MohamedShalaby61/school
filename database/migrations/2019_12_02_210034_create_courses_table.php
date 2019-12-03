@@ -23,7 +23,10 @@ class CreateCoursesTable extends Migration
             $table->longText('brief');
             $table->text('address');
             $table->unsignedBigInteger('sub_category_id');
-            // $table->foreign('sub_category_id')->references('id')->on('sub_categories');
+            // $table->foreign('sub_category_id')
+            // ->references('id')
+            // ->on('sub_categories');
+            
             $table->timestamps();
         });
 
