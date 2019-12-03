@@ -55,20 +55,55 @@ class CategoriesController extends Controller
 
     }
 
-    // public function insertCourse(){
-    // 	$validator = Validator::make($request->all(),[
-	   //     'name'=>'required',
-	   //     'image'=>'required|image',
-	   //     'center_name'=>'required',
-	   //     'center_phone'=>'required',
-	   //     'whats_app'=>'required',
-	   //     'brief'=>'required',
-	   //     'address'=>'required',
-	   //     'sub_category_id' =>'integer|required'
-    //    ]);
+    public function insertCourse(Request $request){
+    	$validator = Validator::make($request->all(),[
+	       'name'=>'required',
+	       'image'=>'image',
+	       'center_name'=>'required',
+	       'center_phone'=>'required',
+	       'whats_app'=>'required',
+	       'brief'=>'required',
+	       'address'=>'required',
+	       'sub_category_id' =>'integer|required'
+       ]);
+      if ($validator->fails()) {
+            
+            
+            return response()->json(['data'=>null,'message'=>$validator->messages()->first()], 200);            
+        }
+
+      $input = $request->all();
+      if($request->hasFile('image')){
+            $input['image'] = $request->file('image');
+            $allowedfileExtension=['jpg','png'];
+            $extension = $input['image']->getClientOriginalExtension();
+            $filename =pathinfo($input['image']->getClientOriginalName(), PATHINFO_FILENAME);
+            $filename = md5($filename . time()) .'.' . $extension;            
+            $check=in_array($extension,$allowedfileExtension);
+            if($check){
+                $path     = $input['image']->move(public_path("/storage") , $filename);
+                $fileURL  = url('/storage/'. $filename);
+                $course = Course::create($input);
+            }
+
+        }
+
+      $course = Course::create($input);
+      $success['name'] = $course->name;
+      $success['center_name'] = $course->center_name;
+      $success['center_phone'] = $course->center_phone;
+      $success['whats_app'] = $course->whats_app;
+      $success['brief'] = $course->brief;
+      $success['address'] = $course->address;
+      $success['sub_category_id'] = $course->sub_category_id;
+      if(isset($input['image'])){
+            $success['image'] =  $fileURL;
+        }
+      return response()->json([ 'success'=>$success,'message' =>'' ], 200); 
+
 
     	
-    // }
+    }
 
     public function searchCourse(Request $request){
         $sub_cat = SubCategory::where('name','like','%'.$request->search . '%')

@@ -59,9 +59,7 @@ class UserController extends Controller
 
       }
 
-      public function soso(){
-      	return response()->json(['ss'=>'ss']);
-      }
+      
 
 
 }

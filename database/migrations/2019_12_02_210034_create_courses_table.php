@@ -16,7 +16,7 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('image_url');
+            $table->string('image');
             $table->string('center_name');
             $table->string('center_phone');
             $table->string('whats_app');
