@@ -20,13 +20,11 @@ class UserController extends Controller
 	            $success['id'] =  $user->id; 
 	            $success['name'] =  $user->name; 
 	            $success['email'] =  $user->email; 
-	            return response()->json(['success' => $success], $this->successStatus); 
+	            return response()->json(['message' => $success], $this->successStatus); 
 	        } 
 	        else{ 
-	            $success['id'] = '';
-	            $success['name'] = '';
-	            $success['email'] = '';
-	            return response()->json(['success'=>$success], 200); 
+	            
+	            return response()->json(['message'=>'please check your email and password'], 401); 
 	        } 
        }
 
