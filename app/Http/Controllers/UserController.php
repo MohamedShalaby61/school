@@ -37,6 +37,7 @@ class UserController extends Controller
             'email' => 'required|unique:users', 
             'password' => 'required', 
             'c_password' => 'required|same:password',
+            'role_id' => 'required|integer',
           ]);
 
           if ($validator->fails()) {
@@ -46,8 +47,9 @@ class UserController extends Controller
           	$input['password'] = bcrypt($input['password']);
           	$user = User::create($input);
           	$success['name']  =  $user->name;
-	        $success['id']    =  $user->id;
-	        $success['email'] =  $user->email;
+	          $success['id']    =  $user->id;
+            $success['role_id']    =  $user->role_id;
+	          $success['email'] =  $user->email;
             return response()->json([ 'data'=>$success,'message' =>'' ], $this->successStatus); 
 
           }

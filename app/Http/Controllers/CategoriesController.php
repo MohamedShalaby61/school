@@ -71,11 +71,11 @@ class CategoriesController extends Controller
     // }
 
     public function searchCourse(Request $request){
-        // $sub_cat = SubCategory::where('name','like','%'.$request->search . '%')
-        // ->orWhere('description','like','%'.$request->search . '%')
-        // ->get();
-      $subCategory = SubCategory::search($request->search_key)->get();
-      $course      = Course::search($request->search_key)->get();
+        $sub_cat = SubCategory::where('name','like','%'.$request->search . '%')
+        ->orWhere('description','like','%'.$request->search . '%')
+        ->get();
+      // $subCategory = SubCategory::search($request->search_key)->get();
+      // $course      = Course::search($request->search_key)->get();
       if($subCategory !== null || $course !== null){
          return response()->json(['sub_category' => $subCategory , 'course' => $course]);
       }else{
