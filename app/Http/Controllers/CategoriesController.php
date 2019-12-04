@@ -134,7 +134,7 @@ class CategoriesController extends Controller
 
     public function getFavouriteCourses(Request $request){
 
-         $fav = Course::where('user_id',$request->user_id)->where('favourite','=',1)->get;
+         $fav = Course::where('user_id',$request->user_id)->where('favourite','=',1)->get();
 
          if($fav->count() > 0){  
             return response()->json(['Favourites' => $fav ]);
