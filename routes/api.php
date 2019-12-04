@@ -24,4 +24,4 @@ Route::get('/getSubCategoryCourses','CategoriesController@getSubCategoryCourses'
 Route::get('/getCourse','CategoriesController@getCourse');
 Route::get('/searchCourse','CategoriesController@searchCourse');
 Route::post('/insertCourse','CategoriesController@insertCourse');
-Route::post('/getFavouriteCourses','CategoriesController@getFavouriteCourses');
+Route::get('/getFavouriteCourses','CategoriesController@getFavouriteCourses');
