@@ -9,6 +9,7 @@ use App\Course;
 use App\Contact;
 use App\Cost;
 use Validator;
+use DB;
 
 class CategoriesController extends Controller
 {
@@ -106,17 +107,33 @@ class CategoriesController extends Controller
     }
 
     public function searchCourse(Request $request){
-        $sub_cat = SubCategory::where('name','like','%'.$request->search . '%')
-        ->orWhere('description','like','%'.$request->search . '%')
-        ->get();
-      // $subCategory = SubCategory::search($request->search_key)->get();
-      // $course      = Course::search($request->search_key)->get();
-      if($subCategory !== null || $course !== null){
-         return response()->json(['sub_category' => $subCategory , 'course' => $course]);
-      }else{
-         return response()->json(['sub_category' => '' , 'course' => '']);
-      }
+       
+           $good = DB::table('sub_categories')
+            ->join('courses', 'sub_categories.id', '=', 'courses.sub_category_id')
+            ->select('sub_categories.name', 'courses.*');
 
+            $aaaa = $good
+               ->where('sub_categories.name','like', '%' . $request->search . '%' )
+               ->orWhere('center_name','like','%' . $request->search . '%')
+               ->orWhere('courses.name','like','%' . $request->search . '%')
+               ->orWhere('center_phone','like','%' . $request->search . '%')
+               ->orWhere('whats_app','like','%' . $request->search . '%')
+               ->orWhere('brief','like','%' . $request->search . '%')
+               ->orWhere('address','like','%' . $request->search . '%')
+              ->get();
+            //dd($good);
+
+      //  if($subCategory !== null || $course !== null){
+      //    return response()->json(['sub_category' => $subCategory , 'course' => $course]);
+      // }else{
+      //    return response()->json(['sub_category' => '' , 'course' => '']);
+      // }
+              return response()->json(['data',$aaaa]);
+
+    }
+
+    public function getFavouriteCourses(Request $request){
+         
     }
 
     
