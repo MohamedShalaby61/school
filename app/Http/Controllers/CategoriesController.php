@@ -85,7 +85,13 @@ class CategoriesController extends Controller
                 $path     = $input['image']->move(public_path("/storage") , $filename);
                 $fileURL  = url('/storage/'. $filename);
                 $course = Course::create($input);
-                
+                $success['name'] = $course->name;
+      $success['center_name'] = $course->center_name;
+      $success['center_phone'] = $course->center_phone;
+      $success['whats_app'] = $course->whats_app;
+      $success['brief'] = $course->brief;
+      $success['address'] = $course->address;
+      $success['sub_category_id'] = $course->sub_category_id;
             }
 
         }
