@@ -39,7 +39,7 @@ class UserController extends Controller
           ]);
 
           if ($validator->fails()) {
-            return response()->json(['data'=>null,'message'=>$validator->messages()->first()], 200);            
+            return response()->json(['data'=>null,'message'=>$validator->messages()->first()], 401);            
           }else{
           	$input = $request->all();
           	$input['password'] = bcrypt($input['password']);
