@@ -132,15 +132,27 @@ class CategoriesController extends Controller
 
     }
 
-    public function getFavouriteCourses(Request $request){
+      // public function getFavouriteCourses(Request $request){
 
-         $fav = Course::where('user_id',$request->user_id)->where('favourite','=',1)->get();
-           dd($fav);
-         if($fav->count() > 0){  
-            return response()->json(['Favourites' => $fav ]);
-         }esle{
-             return response()->json(['message' => 'No Favourite Courses for this user']);
-         }
+      //      $fav = Course::where('user_id',$request->user_id)->where('favourite','=',1)->get();
+      //        dd($fav);
+      //      if($fav->count() > 0){  
+      //         return response()->json(['Favourites' => $fav ]);
+      //      }esle{
+      //          return response()->json(['message' => 'No Favourite Courses for this user']);
+      //      }
+
+
+      // }
+
+
+    public function getFavouriteCourses(Request $request){
+       $fav = Course::where('user_id',$request->user_id)->where('favourite','=',1)->get();
+       if($fav->count() > 0){
+         return response()->json(['Favourites' => $fav]);
+       }else{
+        return response()->json(['message' => 'No Favourite Courses for this user']);
+       }
 
 
     }
