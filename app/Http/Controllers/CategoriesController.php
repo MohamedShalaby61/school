@@ -42,7 +42,7 @@ class CategoriesController extends Controller
     }
 
     public function getSubCategory(Request $request){
-      $main = MainCategory::where('id',$request->id)->subCategories->get();
+      $main = MainCategory::where('id',$request->id)->subCategories->name;
       if ($main !== null) {
         return response()->json(['subCategories'=> $main] , 200);
       }else{
