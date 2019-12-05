@@ -128,7 +128,7 @@ class CategoriesController extends Controller
       // }else{
       //    return response()->json(['sub_category' => '' , 'course' => '']);
       // }
-              return response()->json(['data',$aaaa]);
+              return response()->json(['data'=>$aaaa]);
 
     }
 
