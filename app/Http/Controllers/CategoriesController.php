@@ -31,8 +31,9 @@ class CategoriesController extends Controller
     	$subCategory = SubCategory::where('id',$request->id)->first();
        	         
     	if($subCategory !== null){ 
-          $courses = Course::where('sub_category_id',$subCategory->id)->get();   
-	       	return response()->json(['Sub_Category_name'=> $subCategory->name ,'Courses'=> $courses , 'Status' => 1]);
+          $courses = Course::where('sub_category_id',$subCategory->id)->get(); 
+          $count = $courses->count();  
+	       	return response()->json(['Sub_Category_name'=> $subCategory->name ,'Courses_count'=> $count , 'Status' => 1]);
         }else{
 	       	return response()->json(['Sub_Category_name'=> $subCategory->name ,'Courses' => '', 'Status' => 0]);
         }
