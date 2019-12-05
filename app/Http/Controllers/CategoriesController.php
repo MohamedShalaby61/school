@@ -43,8 +43,14 @@ class CategoriesController extends Controller
 
     public function getSubCategory(Request $request){
       $main = MainCategory::where('id',$request->id)->first()->id;
+
       if ($main !== null) {
-        $sub = SubCategory::query()->select(['name'])->where('main_category_id',$main)->get();
+        $sub = SubCategory::query()->select(['id','name',])->where('main_category_id',$main)->with('courses')->get();
+        foreach ($sub as $sub2) {
+          $course = Course::where('sub_category_id',$sub2->id)->get();
+        }
+        
+        
         return response()->json(['subCategories'=> $sub] , 200);
       }else{
         return response()->json(['subCategories' => null], 401);
