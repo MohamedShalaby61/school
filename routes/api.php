@@ -25,3 +25,4 @@ Route::get('/getCourse','CategoriesController@getCourse');
 Route::get('/searchCourse','CategoriesController@searchCourse');
 Route::post('/insertCourse','CategoriesController@insertCourse');
 Route::get('/getFavouriteCourses','CategoriesController@getFavouriteCourses');
+Route::get('/getSubCategory','CategoriesController@getSubCategory');
