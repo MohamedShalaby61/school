@@ -135,19 +135,19 @@ class CategoriesController extends Controller
 
     public function searchCourse(Request $request){
        
-           $good = DB::table('sub_categories')
-            ->join('courses', 'sub_categories.id', '=', 'courses.sub_category_id')
-            ->select('sub_categories.name', 'courses.*');
+           // $good = DB::table('sub_categories')
+           //  ->join('courses', 'sub_categories.id', '=', 'courses.sub_category_id')
+           //  ->select('sub_categories.name', 'courses.*');
 
-            $aaaa = $good
-               ->where('sub_categories.name','like', '%' . $request->search . '%' )
-               ->orWhere('center_name','like','%' . $request->search . '%')
-               ->orWhere('courses.name','like','%' . $request->search . '%')
-               ->orWhere('center_phone','like','%' . $request->search . '%')
-               ->orWhere('whats_app','like','%' . $request->search . '%')
-               ->orWhere('brief','like','%' . $request->search . '%')
-               ->orWhere('address','like','%' . $request->search . '%')
-              ->get();
+           //  $aaaa = $good
+           //     ->where('sub_categories.name','like', '%' . $request->search . '%' )
+           //     ->orWhere('center_name','like','%' . $request->search . '%')
+           //     ->orWhere('courses.name','like','%' . $request->search . '%')
+           //     ->orWhere('center_phone','like','%' . $request->search . '%')
+           //     ->orWhere('whats_app','like','%' . $request->search . '%')
+           //     ->orWhere('brief','like','%' . $request->search . '%')
+           //     ->orWhere('address','like','%' . $request->search . '%')
+           //    ->get();
             //dd($good);
 
       //  if($subCategory !== null || $course !== null){
@@ -155,7 +155,15 @@ class CategoriesController extends Controller
       // }else{
       //    return response()->json(['sub_category' => '' , 'course' => '']);
       // }
-              return response()->json(['data'=>$aaaa]);
+
+              $searchTerm = $request->search;
+
+        $data = Course::query()
+                       ->where('name', 'LIKE', "%{$searchTerm}%") 
+                       ->orWhere('email', 'LIKE', "%{$searchTerm}%") 
+                       ->get();
+
+              return response()->json(['data'=>$data]);
 
     }
 
