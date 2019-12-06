@@ -111,7 +111,7 @@ class CategoriesController extends Controller
             if($check){
                 $path     = $input['image']->move(public_path("/storage") , $filename);
                 $fileURL  = url('/storage/'. $filename);
-                $course = Course::create($input);
+                // $course = Course::create($input);
             }
 
         }
