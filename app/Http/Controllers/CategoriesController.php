@@ -202,5 +202,24 @@ class CategoriesController extends Controller
 
     }
 
+    public function updateFavourite(Request $request){
+       $favs = Course::where('user_id',$request->user_id)->get();
+       foreach ($favs as $fav) {
+          if($fav->favourite == 0){
+                $fav->update(['favourite' => 1]);
+                return response()->json(['message' => 'added to favourites']);
+           }else{
+
+                $fav->update(['favourite' => 0]);
+                return response()->json(['message' => 'Removed from favourites']);
+
+           }
+         
+       }
+
+       
+
+    }
+
     
 }
