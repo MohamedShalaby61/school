@@ -160,7 +160,11 @@ class CategoriesController extends Controller
 
         $data = Course::query()
                        ->where('name', 'LIKE', "%{$searchTerm}%") 
-                       ->orWhere('email', 'LIKE', "%{$searchTerm}%") 
+                       ->orWhere('center_phone', 'LIKE', "%{$searchTerm}%") 
+                       ->orWhere('center_name', 'LIKE', "%{$searchTerm}%") 
+                       ->orWhere('brief', 'LIKE', "%{$searchTerm}%") 
+                       ->orWhere('whats_app', 'LIKE', "%{$searchTerm}%") 
+                       ->orWhere('address', 'LIKE', "%{$searchTerm}%") 
                        ->get();
 
               return response()->json(['data'=>$data]);
