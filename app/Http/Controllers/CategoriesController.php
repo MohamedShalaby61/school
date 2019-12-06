@@ -98,6 +98,7 @@ class CategoriesController extends Controller
          'brief'=>'required',
          'address'=>'required',
          'sub_category_id' =>'integer|required'
+         'user_id' =>'integer|required'
        ]);
       if ($validator->fails()) {
             
