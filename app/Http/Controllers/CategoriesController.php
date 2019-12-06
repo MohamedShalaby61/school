@@ -20,7 +20,7 @@ class CategoriesController extends Controller
 
        if($categories->count() > 0){
           $subCategories = SubCategory::where('main_category_id', $categories->id)->get();
-          $courses = Course::where('sub_category_id',$subCategories->id)->get();
+          // $courses = Course::where('sub_category_id',$subCategories->id)->get();
 	       	return response()->json(['Main_Category_name'=> $categories->name ,'Sub_Categories'=> $subCategories , 'Status' => 1]);
        }else{
 	       	return response()->json(['Main_Categories'=> '' ,'Sub_Categories' => '', 'Status' => 0]);
