@@ -20,7 +20,13 @@ class CategoriesController extends Controller
 
        if($categories->count() > 0){
           $subCategories = SubCategory::where('main_category_id', $categories->id)->get();
-	       	return response()->json(['Main_Category_name'=> $categories->name ,'Sub_Categories'=> $subCategories , 'Status' => 1]);
+          
+          foreach ($subCategories as $sub ) {
+            $courses = Course::where('sub_category_id',$sub->id)->get();
+          }
+
+          $ss = $courses->count();
+	       	return response()->json(['sub_Category_name'=> $sub->name ,'course_count'=> $ss , 'Status' => 1]);
        }else{
 	       	return response()->json(['Main_Categories'=> '' ,'Sub_Categories' => '', 'Status' => 0]);
        }
@@ -42,19 +48,24 @@ class CategoriesController extends Controller
     }
 
     public function getSubCategory(Request $request){
-      $main = MainCategory::where('id',$request->id)->first()->id;
+      // $sub = SubCategory::where('id',$request->id)->first()->id;
 
-      if ($main !== null) {
-        $sub = SubCategory::query()->select(['id','name',])->where('main_category_id',$main)->with('courses')->get();
-        foreach ($sub as $sub2) {
+      
+
+        $sub = SubCategory::query()->select(['id','name',])->where('id',$request->id)->with('courses')->get();
+        if($sub->count() > 0){
+          foreach ($sub as $sub2) {
           $course = Course::where('sub_category_id',$sub2->id)->get();
         }
         
         
         return response()->json(['subCategories'=> $sub] , 200);
-      }else{
-        return response()->json(['subCategories' => null], 401);
-      }
+
+        }else{
+          return response()->json(['subCategories'=> ''] , 401);
+        }
+        
+      
     }
 
     public function getCourse(Request $request){
