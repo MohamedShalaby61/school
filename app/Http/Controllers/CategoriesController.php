@@ -97,7 +97,7 @@ class CategoriesController extends Controller
          'whats_app'=>'required',
          'brief'=>'required',
          'address'=>'required',
-         'sub_category_id' =>'integer|required'
+         'sub_category_id' =>'integer|required',
          'user_id' =>'integer|required'
        ]);
       if ($validator->fails()) {
