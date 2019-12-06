@@ -20,28 +20,23 @@ class CategoriesController extends Controller
 
        if($categories->count() > 0){
           $subCategories = SubCategory::where('main_category_id', $categories->id)->get();
-          
-          foreach ($subCategories as $sub ) {
-            $courses = Course::where('sub_category_id',$sub->id)->get();
-          }
-
-          $ss = $courses->count();
-	       	return response()->json(['sub_Category_name'=> $sub->name ,'course_count'=> $ss , 'Status' => 1]);
+          $courses = Course::where('sub_category_id',$subCategories->id)->get();
+	       	return response()->json(['Main_Category_name'=> $categories->name ,'Sub_Categories'=> $subCategories , 'Status' => 1]);
        }else{
 	       	return response()->json(['Main_Categories'=> '' ,'Sub_Categories' => '', 'Status' => 0]);
        }
     }
 
-    public function getSubCategoryCourses(Request $request){
+     public function getSubCategoryCourses(Request $request){
 
-    	$subCategory = SubCategory::where('id',$request->id)->first();
-       	         
-    	if($subCategory !== null){ 
+      $subCategory = SubCategory::where('id',$request->id)->first();
+                 
+      if($subCategory !== null){ 
           $courses = Course::where('sub_category_id',$subCategory->id)->get(); 
           $count = $courses->count();  
-	       	return response()->json(['Sub_Category_name'=> $subCategory->name ,'Courses_count'=> $count , 'Status' => 1]);
+          return response()->json(['Sub_Category_name'=> $subCategory->name ,'Courses_count'=> $count , 'Status' => 1]);
         }else{
-	       	return response()->json(['Sub_Category_name'=> $subCategory->name ,'Courses' => '', 'Status' => 0]);
+          return response()->json(['Sub_Category_name'=> $subCategory->name ,'Courses' => '', 'Status' => 0]);
         }
 
 
@@ -85,15 +80,15 @@ class CategoriesController extends Controller
     }
 
     public function insertCourse(Request $request){
-    	$validator = Validator::make($request->all(),[
-	       'name'=>'required',
-	       'image'=>'image',
-	       'center_name'=>'required',
-	       'center_phone'=>'required',
-	       'whats_app'=>'required',
-	       'brief'=>'required',
-	       'address'=>'required',
-	       'sub_category_id' =>'integer|required'
+      $validator = Validator::make($request->all(),[
+         'name'=>'required',
+         'image'=>'image',
+         'center_name'=>'required',
+         'center_phone'=>'required',
+         'whats_app'=>'required',
+         'brief'=>'required',
+         'address'=>'required',
+         'sub_category_id' =>'integer|required'
        ]);
       if ($validator->fails()) {
             
@@ -131,7 +126,7 @@ class CategoriesController extends Controller
       return response()->json([ 'success'=>$success,'message' =>'' ], 200); 
 
 
-    	
+      
     }
 
     public function searchCourse(Request $request){
