@@ -203,7 +203,7 @@ class CategoriesController extends Controller
     }
 
     public function updateFavourite(Request $request){
-       $favs = Course::where('user_id',$request->user_id)->get();
+       $favs = Course::where('id',$request->course_id)->where('user_id',$request->user_id)->get();
        foreach ($favs as $fav) {
           if($fav->favourite == 0){
                 // $fav->update(['favourite' => 1]);
