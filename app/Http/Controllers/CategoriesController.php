@@ -115,9 +115,8 @@ class CategoriesController extends Controller
             $check=in_array($extension,$allowedfileExtension);
             if($check){
                 $path     = $input['image']->move(public_path("/storage") , $filename);
-                
-                $course = Course::create($input);
                 $fileURL  = url('/storage/'. $filename);
+                $course = Course::create($input);
             }
 
         }
