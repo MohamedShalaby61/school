@@ -167,7 +167,13 @@ class CategoriesController extends Controller
                        ->orWhere('address', 'LIKE', "%{$searchTerm}%") 
                        ->get();
 
-              return response()->json(['data'=>$data]);
+                       if($data->count() > 0){
+                          return response()->json(['data'=>$data]);
+                       }else{
+                        return response()->json(['data' => 'No Matched data Found']);
+                       }
+
+              
 
     }
 
