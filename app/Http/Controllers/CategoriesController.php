@@ -206,11 +206,15 @@ class CategoriesController extends Controller
        $favs = Course::where('user_id',$request->user_id)->get();
        foreach ($favs as $fav) {
           if($fav->favourite == 0){
-                $fav->update(['favourite' => 1]);
+                // $fav->update(['favourite' => 1]);
+                $fav->favourite = 1;
+                $fav->save();
                 return response()->json(['message' => 'added to favourites']);
            }else{
 
-                $fav->update(['favourite' => 0]);
+                // $fav->update(['favourite' => 0]);
+                $fav->favourite = 0;
+                $fav->save();
                 return response()->json(['message' => 'Removed from favourites']);
 
            }
