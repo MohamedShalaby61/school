@@ -22,9 +22,11 @@ class CategoriesController extends Controller
           $subCategories = SubCategory::where('main_category_id', $categories->id)->get();
 
           foreach ($subCategories as $subCategory) {
-            $name = $subCategory->name;
-            $count = $subCategory->courses->count();
+            $name[] = $subCategory->name;
+            $count[] = $subCategory->courses->count();
           }
+
+          dd($name);
           
 
           // $count = $courses->count();
