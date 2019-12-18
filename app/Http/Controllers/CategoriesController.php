@@ -20,7 +20,10 @@ class CategoriesController extends Controller
 
        if($categories->count() > 0){
           $subCategories = SubCategory::where('main_category_id', $categories->id)->get();
-          $array  = array($name => array(), $count => array());
+
+          $name = array();
+          $count = array();
+          $array  = array($name, $count);
           foreach ($subCategories as $subCategory) {
             $name = $subCategory->name;
             $count = $subCategory->courses->count();
