@@ -26,7 +26,7 @@ class CategoriesController extends Controller
             $count[] = $subCategory->courses->count();
           }
 
-          dd($name);
+          // dd($name);
           
 
           // $count = $courses->count();
