@@ -28,11 +28,6 @@ class CategoriesController extends Controller
             $result[]['count'] = $subCategory->courses->count();
 
           }
-
-          // dd($name);
-          
-
-          // $count = $courses->count();
            
 	       	return response()->json(['Main_Category_name'=> $categories->name ,'Sub_Categories'=> $result , 'Status' => 1 ]);
        }else{
@@ -170,11 +165,11 @@ class CategoriesController extends Controller
 
         $data = Course::query()
                        ->where('name', 'LIKE', "%{$searchTerm}%") 
-                       ->orWhere('center_phone', 'LIKE', "%{$searchTerm}%") 
-                       ->orWhere('center_name', 'LIKE', "%{$searchTerm}%") 
-                       ->orWhere('brief', 'LIKE', "%{$searchTerm}%") 
-                       ->orWhere('whats_app', 'LIKE', "%{$searchTerm}%") 
-                       ->orWhere('address', 'LIKE', "%{$searchTerm}%") 
+                       // ->orWhere('center_phone', 'LIKE', "%{$searchTerm}%") 
+                       // ->orWhere('center_name', 'LIKE', "%{$searchTerm}%") 
+                       // ->orWhere('brief', 'LIKE', "%{$searchTerm}%") 
+                       // ->orWhere('whats_app', 'LIKE', "%{$searchTerm}%") 
+                       // ->orWhere('address', 'LIKE', "%{$searchTerm}%") 
                        ->get();
 
                        if($data->count() > 0){
