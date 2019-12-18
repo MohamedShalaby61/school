@@ -29,7 +29,7 @@ class CategoriesController extends Controller
 
           }
            
-	       	return response()->json(['Main_Category_name'=> $categories->name ,'Sub_Categories'=> $result[]['name'] ,'course_count' => $result[]['count'], 'Status' => 1 ]);
+	       	return response()->json(['Main_Category_name'=> $categories->name ,'Sub_Categories'=> $result['name'] ,'course_count' => $result['count'], 'Status' => 1 ]);
        }else{
 	       	return response()->json(['Main_Categories'=> '' ,'Sub_Categories' => '', 'Status' => 0]);
        }
