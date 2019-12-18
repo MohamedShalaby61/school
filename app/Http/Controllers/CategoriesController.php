@@ -22,13 +22,14 @@ class CategoriesController extends Controller
           $subCategories = SubCategory::where('main_category_id', $categories->id)->get();
 
           foreach ($subCategories as $subCategory) {
+            $name = $subCategory->name;
             $count = $subCategory->courses->count();
           }
           
 
           // $count = $courses->count();
            
-	       	return response()->json(['Main_Category_name'=> $categories->name ,'Sub_Categories'=> $subCategory->name ,'course_count' => $count , 'Status' => 1 ]);
+	       	return response()->json(['Main_Category_name'=> $categories->name ,'Sub_Categories'=> $name ,'course_count' => $count , 'Status' => 1 ]);
        }else{
 	       	return response()->json(['Main_Categories'=> '' ,'Sub_Categories' => '', 'Status' => 0]);
        }
