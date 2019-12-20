@@ -30,6 +30,8 @@ class CategoriesController extends Controller
             $result[]['count'] = $subCategory->courses->count();
 
           }
+
+          dd($result);
            //id - sub id - name - image - main_category_id
 	       	// return response()->json(['Main_Category_name'=> $categories->name ,'Sub_Categories'=> $result , 'Status' => 1 ]);
              return response()->json(array(
