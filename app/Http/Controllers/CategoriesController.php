@@ -17,11 +17,9 @@ class CategoriesController extends Controller
 
        $categories = MainCategory::where('id',$request->id)->first();
        
-          dd($categories);
        if($categories->count() > 0){
           $subCategories = SubCategory::where('main_category_id', $categories->id)->get();
 
-          dd($subCategories);
           foreach ($subCategories as $subCategory) {
             
             $result[]['id'] = $subCategory->id;
