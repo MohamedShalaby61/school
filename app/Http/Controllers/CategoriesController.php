@@ -22,7 +22,7 @@ class CategoriesController extends Controller
 
           foreach ($subCategories as $subCategory) {
             
-            $result[]['id'] = $subCategory->id;
+            // $result[]['id'] = $subCategory->id;
             $result[]['name'] = $subCategory->name;
             $result[]['image'] = $subCategory->image;
             $result[]['count'] = $subCategory->courses->count();
@@ -36,7 +36,7 @@ class CategoriesController extends Controller
                'main_category_id' => $categories->id ,
                'main_category_name' => $categories->name),
              array(
-               'sub_category_id' => $result['id'] ,
+               // 'sub_category_id' => $result['id'] ,
                'image' => $result['image'] ,
                'count' => $result['count']));
        }else{
