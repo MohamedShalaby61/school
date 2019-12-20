@@ -25,9 +25,9 @@ class CategoriesController extends Controller
           foreach ($subCategories as $subCategory) {
             
             // $result[]['id'] = $subCategory->id;
-            $result[]['name'] = $subCategory->name;
-            $result[]['image'] = $subCategory->image;
-            $result[]['count'] = $subCategory->courses->count();
+            $result['name'] = $subCategory->name;
+            $result['image'] = $subCategory->image;
+            $result['count'] = $subCategory->courses->count();
 
           }
 
