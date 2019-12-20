@@ -38,9 +38,9 @@ class CategoriesController extends Controller
                'main_category_id' => $categories->id ,
                'main_category_name' => $categories->name),
              array(
-               'sub_category_id' => $result[]['id'] ,
-               'image' => $result[]['image'] ,
-               'count' => $result[]['count']));
+               'sub_category_id' => $result['id'] ,
+               'image' => $result['image'] ,
+               'count' => $result['count']));
        }else{
 	       	return response()->json(['Main_Categories'=> '' ,'Sub_Categories' => '', 'Status' => 0]);
        }
