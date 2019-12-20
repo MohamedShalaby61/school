@@ -34,7 +34,7 @@ class CategoriesController extends Controller
 	       	// return response()->json(['Main_Category_name'=> $categories->name ,'Sub_Categories'=> $result , 'Status' => 1 ]);
              return response()->json(array(
                'main_category_id' => $categories->id ,
-               'main_category_name' => $categories->name),['result' => $result]);
+               'main_category_name' => $categories->name,'result' => $result));
        }else{
 	       	return response()->json(['Main_Categories'=> '' ,'Sub_Categories' => '', 'Status' => 0]);
        }
