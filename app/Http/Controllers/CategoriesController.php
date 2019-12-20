@@ -32,7 +32,7 @@ class CategoriesController extends Controller
           }
            //id - sub id - name - image - main_category_id
 	       	// return response()->json(['Main_Category_name'=> $categories->name ,'Sub_Categories'=> $result , 'Status' => 1 ]);
-             return response()->json(array('main_category_id' => $categories->id , 'main_category_name' => $categories->name),array('sub_category_id' => $result[$index]['id'] , 'image' => $result[$index]['image'] , 'count' => $result[$index]['count']));
+             return response()->json(array('main_category_id' => $categories->id , 'main_category_name' => $categories->name),array('sub_category_id' => $result[$index-1]['id'] , 'image' => $result[$index-1]['image'] , 'count' => $result[$index-1]['count']));
        }else{
 	       	return response()->json(['Main_Categories'=> '' ,'Sub_Categories' => '', 'Status' => 0]);
        }
