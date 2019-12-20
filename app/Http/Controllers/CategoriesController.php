@@ -21,13 +21,13 @@ class CategoriesController extends Controller
        if($categories->count() > 0){
           $subCategories = SubCategory::where('main_category_id', $categories->id)->get();
 
-          
+          dd($subCategories);
           foreach ($subCategories as $subCategory) {
             
-            // $result[]['id'] = $subCategory->id;
-            $result['name'] = $subCategory->name;
-            $result['image'] = $subCategory->image;
-            $result['count'] = $subCategory->courses->count();
+            $result[]['id'] = $subCategory->id;
+            $result[]['name'] = $subCategory->name;
+            $result[]['image'] = $subCategory->image;
+            $result[]['count'] = $subCategory->courses->count();
 
           }
 
